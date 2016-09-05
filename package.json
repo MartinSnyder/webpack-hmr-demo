@@ -1,0 +1,36 @@
+{
+  "name": "webpack-hmr-demo",
+  "version": "0.1.0",
+  "description": "LibertyJS 2016 demonstration of webpack hot module replacement",
+  "main": "src/index.js",
+  "author": "Martin Snyder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MartinSnyder/webpack-hmr-demo.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dashboard -- webpack-dev-server --hot --inline"
+  },
+  "dependencies": {
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "css-loader": "^0.24.0",
+    "file-loader": "^0.9.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "path": "^0.12.7",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dashboard": "^0.1.8",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
