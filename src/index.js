@@ -1,10 +1,14 @@
-// import * as Pulse from './pulse';
+import * as ES6ImportedPulse from './pulse';
+const TopLevelRequiredPulse = require('./pulse');
 
 const delay = 2500; // milliseconds
 
 window.setInterval(() => {
-    const Pulse = require('./pulse');
-    Pulse.emitPulse();
+    const InnerRequiredPulse = require('./pulse');
+
+    TopLevelRequiredPulse.emitPulse(document.getElementById('left'));
+    InnerRequiredPulse.emitPulse(document.getElementById('center'));
+    ES6ImportedPulse.emitPulse(document.getElementById('right'));
 }, delay);
 
 // Activate Webpack HMR
