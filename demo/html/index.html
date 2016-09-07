@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>LibertyJS 2016 demonstration of webpack hot module replacement</title>
-    <script src="http://localhost:9000/builds/bundle.js"></script>
 </head>
 <body>
     <table width="100%">
         <thead>
             <tr>
-                <th width="33%">TopLevelRequiredPulse</th>
-                <th width="34%">InnerRequiredPulse</th>
-                <th width="33%">ES6ImportedPulse</th>
+                <th width="33%">Uptime</th>
+                <th width="34%">Last Pulse</th>
+                <th width="33%">Num Reloads</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td id="left"></td>
-                <td id="center"></td>
-                <td id="right"></td>
+                <td id="upTime"></td>
+                <td id="lastPulse"></td>
+                <td id="numReloads"></td>
             </tr>
         </tbody>
     </table>
+    <script src="http://localhost:9000/builds/bundle.js"></script>
 </body>
 </html>

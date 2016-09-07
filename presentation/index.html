@@ -31,10 +31,153 @@
 						<img src="img/libertyjs_logo.png" />
 					</p>
 					<aside class="notes">
+                        <ul>
+                            <li>Wingspan makes document management applications for regulated industries</li>
+                            <li>Direct attack on one of the best parts of software development</li>
+                        </ul>
 					</aside>
 				</section>
 
-				<section>
+                <section>
+                    <h2>What is webpack HMR?</h2>
+                    <p>
+                        <i>"webpack HMR is a feature to inject updated modules into the active runtime."</i>
+                    </p>
+                    <aside class="notes">
+                        <ul>
+                            <li>webpack - "module bundler" packages a node project for the web</li>
+                            <li>module - self-contained, isolated JavaScript nuggets</li>
+                            <li>HMR - the ability to replace a module in a running application</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Demo 1</h2>
+                    <aside class="notes">
+                        Short demo to show basic capability of injecting code without refreshing the page
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>webpack Mechanics</h2>
+                    <ul>
+                        <li>package.json</li>
+                        <li>webpack.config</li>
+                        <li>webpack-dev-server</li>
+                        <li>Tips and Tricks</li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>webpack minimal package.json</h2>
+<pre><code class="javascript">{
+  ...
+  "devDependencies": {
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
+</code></pre>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>webpack typical package.json</h2>
+<pre><code class="javascript">{
+  ...
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.24.0",
+    "file-loader": "^0.9.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dashboard": "^0.1.8",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
+</code></pre>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>webpack minimal webpack.config.js</h2>
+<pre><code class="javascript">const webpack = require('webpack');
+
+module.exports = {
+    entry:  './src/index.js',
+    output: {
+        path:       'builds/',
+        publicPath: 'http://localhost:9000/builds/',
+        filename:   'bundle.js'
+    },
+    devServer: {
+        progress: true,
+        colors:   true,
+        port:     9000
+    },
+    module: {
+        loaders: [
+            {
+                test:    /.js$/,
+                loader:  'babel',
+                exclude: /node_modules/,
+                query: {
+                    // Needed to find presets in linked modules
+                    // http://stackoverflow.com/questions/34574403/how-to-set-resolve-for-babel-loader-presets/
+                    presets: ['babel-preset-es2015'].map(require.resolve)
+                }
+            }
+        ]
+    }
+};
+</code></pre>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>webpack-dev-server</h2>
+                    <p>
+                        <img src="img/webpack-dev-server.png" />
+                    </p>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>webpack-dashboard</h2>
+                    <p>
+                        <img src="img/webpack-dashboard.png" />
+                    </p>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>JavaScript Mechanics</h2>
+                    <ul>
+                        <li>"Activating" HMR</li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+
+
+
+
+
+
+
+
+                <section>
 					<h1>Thank You!</h1>
 					<p>
 						<small><a href="http://martinsnyder.net">Martin Snyder</a> / <a href="https://twitter.com/MartinSnyder">@MartinSnyder</a> / <a href="http://www.wingspan.com">Wingspan Technology, Inc.</a></small>
