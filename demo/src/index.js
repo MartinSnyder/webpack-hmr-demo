@@ -4,12 +4,11 @@ import pulse from './pulse';
 
 require('./styles.scss');
 
-const delay = 1000; // milliseconds
-
+const UPDATE_INTERVAL = 1000; // milliseconds
 const intervalId = window.setInterval(() => {
     dom.writeTextToElement('upTime', time.getElapsedSeconds() + ' seconds');
     dom.writeTextToElement('lastPulse', pulse());
-}, delay);
+}, UPDATE_INTERVAL);
 
 // Activate Webpack HMR
 if (module.hot) {

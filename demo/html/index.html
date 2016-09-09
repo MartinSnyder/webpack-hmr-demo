@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LibertyJS 2016 demonstration of webpack hot module replacement</title>
-</head>
-<body>
-    <table width="100%">
-        <thead>
-            <tr>
-                <th width="33%">Uptime</th>
-                <th width="34%">Last Pulse</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="upTime"></td>
-                <td id="lastPulse"></td>
-            </tr>
-        </tbody>
-    </table>
-    <script src="http://localhost:9000/builds/bundle.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>LibertyJS 2016 demonstration of webpack hot module replacement</title>
+        <script src="http://localhost:9000/builds/bundle.js"></script>
+    </head>
+    <body>
+        <div>UpTime: <span id="upTime"></span></div>
+        <div>Last Pulse: <span id="lastPulse"></span></div>
+    </body>
 </html>
