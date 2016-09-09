@@ -1,3 +1,3 @@
 export default function pulse() {
-    return 'Pulse';
+    return 'Pulse3';
 }
