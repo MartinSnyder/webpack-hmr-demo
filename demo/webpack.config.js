@@ -25,6 +25,10 @@ module.exports = {
                     // http://stackoverflow.com/questions/34574403/how-to-set-resolve-for-babel-loader-presets/
                     presets: ['babel-preset-es2015'].map(require.resolve)
                 }
+            },
+            {
+                test: /\.scss$/,
+                loaders: ["style", "css", "sass"]
             }
         ]
     },

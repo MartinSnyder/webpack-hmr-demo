@@ -2,6 +2,8 @@ import * as dom from './dom';
 import * as time from './time';
 import pulse from './pulse';
 
+require('./styles.scss');
+
 const delay = 1000; // milliseconds
 
 const intervalId = window.setInterval(() => {
