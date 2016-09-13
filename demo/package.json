@@ -13,6 +13,9 @@
     "start": "./node_modules/.bin/webpack-dev-server --hot --inline",
     "dashboard": "./node_modules/.bin/webpack-dashboard -- webpack-dev-server --hot --inline"
   },
+  "dependencies": {
+    "jquery": "^3.1.0"
+  },
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",

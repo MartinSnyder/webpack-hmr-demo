@@ -1,3 +1,9 @@
+import $ from 'jquery';
+
 export function writeTextToElement(id, text) {
-    document.getElementById(id).innerText = text;
+    $('#' + id).text(text);
+}
+
+if (module.hot) {
+    module.hot.decline('jquery');
 }

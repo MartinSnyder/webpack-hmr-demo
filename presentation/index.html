@@ -76,7 +76,7 @@
                 </section>
 
                 <section>
-                    <h2>webpack minimal package.json</h2>
+                    <h2>webpack HMR minimal package.json</h2>
 <pre><code class="javascript">{
   ...
   "devDependencies": {
@@ -90,7 +90,7 @@
                 </section>
 
                 <section>
-                    <h2>webpack typical package.json</h2>
+                    <h2>webpack HMR typical package.json</h2>
 <pre><code class="javascript">{
   ...
   "devDependencies": {
@@ -179,24 +179,64 @@ module.exports = {
 
                 <section>
                     <h2>"Activating" HMR</h2>
+<pre><code class="javascript">if (module.hot) {
+    module.hot.accept();
+}
+</code></pre>
                     <aside class="notes">
                     </aside>
                 </section>
 
                 <section>
                     <h2>Accommodating side effects</h2>
+<pre><code class="javascript">// Some operation with a side-effect (like adding a DOM element)
+
+if (module.hot) {
+    module.hot.dispose(() => {
+        // Undo side effect, if possible
+    });
+}
+</code></pre>
                     <aside class="notes">
                     </aside>
                 </section>
 
                 <section>
                     <h2>Preserving state</h2>
+<pre><code class="javascript">// Initialize module state (cannot use const)
+let state = {
+    count: 0
+};
+
+if (module.hot) {
+    // Re-assign state based on module data
+    const data = module.hot.data || {};
+    state = data.state || state;
+
+    module.hot.dispose((data) => {
+        // Store our retained data here so the next iteration of our module can access it
+        data.state = state;
+    });
+}
+</code></pre>
                     <aside class="notes">
                     </aside>
                 </section>
 
                 <section>
                     <h2>Bailing out</h2>
+<pre><code class="javascript">import * as library from 'some-module';
+
+library.invoke();
+
+if (module.hot) {
+    // I am not HMR safe
+    module.hot.decline();
+
+    // My dependency is not HMR safe
+    module.hot.decline('some-module');
+}
+</code></pre>
                     <aside class="notes">
                     </aside>
                 </section>
