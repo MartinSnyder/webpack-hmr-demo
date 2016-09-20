@@ -45,10 +45,10 @@
                     </p>
                     <aside class="notes">
                         <ul>
-                            <li>webpack - "module bundler" packages a node project for the web</li>
+                            <li>webpack - "module bundler" xform node project for web</li>
                             <li>module - self-contained, isolated JavaScript nuggets</li>
                             <li>HMR - the ability to replace a module in a running application</li>
-                            <li>Applies to source files, not pacakge.json or webpack.config.js</li>
+                            <li>Applies to source files, not config</li>
                         </ul>
                     </aside>
                 </section>
@@ -58,9 +58,10 @@
                     <p>webpack in action</p>
                     <aside class="notes">
                         <ul>
-                            <li>Injecting updated code/styles without page refresh</li>
+                            <li>Update code/styles</li>
                             <li>Show traffic in debugger</li>
                             <li>Show HMR code in bundle</li>
+                            <li>Change HTML file</li>
                         </ul>
                     </aside>
                 </section>
@@ -73,6 +74,7 @@
                         <li>webpack-dev-server</li>
                     </ul>
                     <aside class="notes">
+                        These are the configuration files for webpack
                     </aside>
                 </section>
 
@@ -87,6 +89,7 @@
 }
 </code></pre>
                     <aside class="notes">
+                        All webpack users probably already have these
                     </aside>
                 </section>
 
@@ -109,6 +112,7 @@
 }
 </code></pre>
                     <aside class="notes">
+                        This can grow quite a bit, but it's all tooling, not deployable
                     </aside>
                 </section>
 
@@ -118,33 +122,20 @@
 
 module.exports = {
     entry:  './src/index.js',
-    output: {
-        path:       'builds/',
-        publicPath: 'http://localhost:9000/builds/',
-        filename:   'bundle.js'
-    },
-    devServer: {
-        progress: true,
-        colors:   true,
-        port:     9000
-    },
     module: {
-        loaders: [
-            {
-                test:    /.js$/,
-                loader:  'babel',
-                exclude: /node_modules/,
-                query: {
-                    // Needed to find presets in linked modules
-                    // http://stackoverflow.com/questions/34574403/how-to-set-resolve-for-babel-loader-presets/
-                    presets: ['babel-preset-es2015'].map(require.resolve)
-                }
+        loaders: [{
+            test: /.js$/,
+            loader: 'babel',
+            exclude: /node_modules/,
+            query: {
+                presets: 'es2015'
             }
-        ]
+        }]
     }
 };
 </code></pre>
                     <aside class="notes">
+                        The loaders are technically not required, but probably everyone has at least that.
                     </aside>
                 </section>
 
