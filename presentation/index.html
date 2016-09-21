@@ -54,6 +54,23 @@
                 </section>
 
                 <section>
+                    <h2>How does webpack HMR work?</h2>
+                    <ul>
+                        <li>Take ownership of all require/import statements</li>
+                        <li>Build array of modules</li>
+                        <li>Build dependency graph of module references</li>
+                        <li>Signal changes via websocket</li>
+                        <li>Reload all modified & dependant modules</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>Also inlines non .js assets as .js</li>
+                            <li>Source maps work through all of this</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
                     <h2>Demo</h2>
                     <p>webpack in action</p>
                     <aside class="notes">
@@ -82,6 +99,9 @@
                     <h2>webpack HMR minimal package.json</h2>
 <pre><code class="javascript">{
   ...
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --hot --inline"
+  },
   "devDependencies": {
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
@@ -257,6 +277,20 @@ if (module.hot) {
                         <li>HMR with React.js</li>
                     </ul>
                     <aside class="notes">
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Links</h2>
+                    <ul>
+                        <li><a href="https://github.com/MartinSnyder/webpack-hmr-demo">https://github.com/MartinSnyder/webpack-hmr-demo</a></li>
+                        <li><a href="https://webpack.github.io/">https://webpack.github.io/</a></li>
+                        <li><a href="https://github.com/FormidableLabs/webpack-dashboard">https://github.com/.../webpack-dashboard</a></li>
+                        <li><a href="https://github.com/danmartinez101/babel-preset-react-hmre">https://github.com/.../babel-preset-react-hmre</a></li>
+                        <li><a href="http://martinsnyder.net/">http://martinsnyder.net/</a></li>
+                    </ul>
+                    <aside class="notes">
+                        Slides and source code available in the git repository
                     </aside>
                 </section>
 
