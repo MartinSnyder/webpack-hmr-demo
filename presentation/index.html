@@ -72,7 +72,7 @@
 
                 <section>
                     <h2>Demo</h2>
-                    <p>webpack in action</p>
+                    <p>HMR in action</p>
                     <aside class="notes">
                         <ul>
                             <li>Update code/styles</li>
@@ -165,6 +165,7 @@ module.exports = {
                         <img src="img/webpack-dev-server.png" />
                     </p>
                     <aside class="notes">
+                        HMR has very little impact on the output
                     </aside>
                 </section>
 
@@ -174,6 +175,7 @@ module.exports = {
                         <img src="img/webpack-dashboard.png" />
                     </p>
                     <aside class="notes">
+                        Alternative visualization, no impact otherwise (to HMR or any other feature).
                     </aside>
                 </section>
 
@@ -196,6 +198,7 @@ module.exports = {
 }
 </code></pre>
                     <aside class="notes">
+                        Easy, but should only be done at webpack entry points.  Doing this at a non entry-point will "disconnect" HMR.
                     </aside>
                 </section>
 
@@ -210,6 +213,7 @@ if (module.hot) {
 }
 </code></pre>
                     <aside class="notes">
+                        Not all side effects can be reversed (or need to be reversed)
                     </aside>
                 </section>
 
@@ -232,6 +236,7 @@ if (module.hot) {
 }
 </code></pre>
                     <aside class="notes">
+                        Note that in the production build, the entire if block will be optimized out.
                     </aside>
                 </section>
 
@@ -257,6 +262,7 @@ if (module.hot) {
                     <h2>Live Coding</h2>
                     <aside class="notes">
                         <ul>
+                            <li>Turn on HMR in package.json</li>
                             <li>Change body of setInterval in index.js</li>
                             <li>Activate HMR in index.js</li>
                             <li>Fix setInterval issue in index.js</li>
@@ -270,6 +276,43 @@ if (module.hot) {
                 </section>
 
                 <section>
+                    <h2>Hazards - State</h2>
+                    <pre><code class="javascript">import * as library from 'some-module';
+
+let state = new library.Class()
+
+if (module.hot) {
+    // Re-assign state based on module data
+    const data = module.hot.data || {};
+    state = data.state || state;
+
+    module.hot.dispose((data) => {
+        // Store our retained data here so the next iteration of our module can access it
+        data.state = state;
+    });
+}</code></pre>
+                    <aside class="notes">
+                        The class instance won't be updated in this scenario.  Will want to
+                        reject changes from some-module but can HMR otherwise.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Hazards - Async Callbacks</h2>
+                    <pre><code class="javascript">import * as library from 'some-module';
+
+library
+    .ajax({
+        url: 'http://localhost/service'
+    }).then((payload) => {
+        // Process
+    });</code></pre>
+                    <aside class="notes">
+                        Applies to DOM event handlers and plenty of other scenarios.
+                    </aside>
+                </section>
+
+                <section>
                     <h2>Related Topics</h2>
                     <ul>
                         <li>Working with symlinked modules</li>
@@ -277,6 +320,11 @@ if (module.hot) {
                         <li>HMR with React.js</li>
                     </ul>
                     <aside class="notes">
+                        <ul>
+                            <li>symlinks - webpack issues but also HMR-specific issues</li>
+                            <li>General pain point with webpack -- extend your webpack.config.js for production</li>
+                            <li>React HMR requires specific extension</li>
+                        </ul>
                     </aside>
                 </section>
 
