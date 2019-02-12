@@ -3,23 +3,35 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
     entry:  './src/index.js',
+    mode: 'development',
     devtool: 'cheap-source-map',
     output: {
         path:       '/',
         publicPath: 'http://localhost:8080/',
         filename:   'bundle.js'
     },
+    devServer: {
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
+    },
     module: {
-        loaders: [{
-            test: /.js$/,
-            loader: 'babel',
+        rules: [{
+            test: /\.m?js$/,
             exclude: /node_modules/,
-            query: {
-                presets: 'es2015'
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['babel-preset-env']
+                }
             }
         },{
             test: /\.scss$/,
-            loaders: ["style", "css", "sass"]
+            use: [
+                "style-loader", // creates style nodes from JS strings
+                "css-loader", // translates CSS into CommonJS
+                "sass-loader" // compiles Sass to CSS, using Node Sass by default
+            ]
         }]
     },
     plugins: [
