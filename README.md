@@ -12,5 +12,5 @@ To run the demo
 3. npm start
 4. Open your web browser to http://localhost:8080/
 
-[slides]: https://rawgit.com/MartinSnyder/webpack-hmr-demo/master/presentation/index.html
+[slides]: https://martinsnyder.net/asset/revealjs/webpack-hmr.html
 [screencast]: https://www.youtube.com/watch?v=JVuzVjClP5g
